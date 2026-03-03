@@ -29,14 +29,14 @@ func DrawInitiBoard(grid [4][4]int) {
 	rl.DrawRectangle(b.posX, b.posY, b.width, b.height, GetDefaultBoardColor())
 	rl.DrawRectangleLines(b.posX, b.posY, b.width, b.height, rl.Black)
 
-	for i := range int32(4) {
-		for j := range int32(4) {
-			var posX int32 = b.posX + (i * (internalSizeRec + padding)) + padding
-			var posY int32 = b.posY + (j * (internalSizeRec + padding)) + padding
+	for r := range int32(4) {
+		for c := range int32(4) {
+			var posX int32 = b.posX + (c * (internalSizeRec + padding)) + padding
+			var posY int32 = b.posY + (r * (internalSizeRec + padding)) + padding
 
-			rl.DrawRectangle(posX, posY, internalSizeRec, internalSizeRec, GetInternalColorRec(grid[i][j]))
+			rl.DrawRectangle(posX, posY, internalSizeRec, internalSizeRec, GetInternalColorRec(grid[r][c]))
 			rl.DrawRectangleLines(posX, posY, internalSizeRec, internalSizeRec, rl.Black)
-			DrawValueBoard(grid[i][j], posX, posY)
+			DrawValueBoard(grid[r][c], posX, posY)
 		}
 	}
 }

@@ -1,7 +1,7 @@
 package engine
 
 import (
-	logic "github.com/Guilherme-Yeager/game-2048/internal/LOGIC"
+	"github.com/Guilherme-Yeager/game-2048/internal/logic"
 	"github.com/Guilherme-Yeager/game-2048/internal/ui"
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
@@ -19,7 +19,26 @@ func Run() {
 		rl.ClearBackground(rl.RayWhite)
 
 		ui.DrawInitiBoard(logic.Grid)
+		handleInput()
 
 		rl.EndDrawing()
+	}
+}
+
+func handleInput() {
+	if rl.IsKeyPressed(rl.KeyUp) {
+		logic.MoveUpGrid()
+		logic.UpdateGrid()
+	}
+	if rl.IsKeyPressed(rl.KeyDown) {
+		logic.UpdateGrid()
+	}
+
+	if rl.IsKeyPressed(rl.KeyLeft) {
+		logic.UpdateGrid()
+	}
+
+	if rl.IsKeyPressed(rl.KeyRight) {
+		logic.UpdateGrid()
 	}
 }
