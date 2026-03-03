@@ -35,6 +35,7 @@ func handleInput() {
 	}
 
 	if rl.IsKeyPressed(rl.KeyLeft) {
+		logic.MoveLeftGrid()
 		logic.UpdateGrid()
 	}
 
