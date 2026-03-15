@@ -22,7 +22,10 @@ var b = board{
 const internalSizeRec int32 = 120
 const padding int32 = 4
 
-func DrawInitiBoard(grid [4][4]int) {
+var NewRow int32 = -1
+var NewCol int32 = -1
+
+func DrawBoard(grid [4][4]int) {
 	b.posX = (int32(rl.GetScreenWidth()) - b.width) / 2
 	b.posY = (int32(rl.GetScreenHeight()) - b.height) / 2
 
@@ -35,13 +38,21 @@ func DrawInitiBoard(grid [4][4]int) {
 			var posY int32 = b.posY + (r * (internalSizeRec + padding)) + padding
 
 			rl.DrawRectangle(posX, posY, internalSizeRec, internalSizeRec, GetInternalColorRec(grid[r][c]))
-			rl.DrawRectangleLines(posX, posY, internalSizeRec, internalSizeRec, rl.Black)
-			DrawValueBoard(grid[r][c], posX, posY)
+
+			var color rl.Color
+			if r == NewRow && c == NewCol {
+				color = rl.Green
+			} else {
+				color = rl.Black
+			}
+
+			rl.DrawRectangleLines(posX, posY, internalSizeRec, internalSizeRec, color)
+			drawValueBoard(grid[r][c], posX, posY)
 		}
 	}
 }
 
-func DrawValueBoard(value int, posX int32, posY int32) {
+func drawValueBoard(value int, posX int32, posY int32) {
 	if value == 0 {
 		return
 	}
